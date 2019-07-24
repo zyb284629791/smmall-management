@@ -4,8 +4,8 @@ spring:
     registry:
       address: zookeeper://vmCentos:2181
       protocol: dubbo
-      file: /smmall/servers/log/dubbo-cache/${spring.application.name}/dubbo.cache
-   consumer:
+      file: ./smmall/servers/log/dubbo-cache/${spring.dubbo.application}/dubbo.cache
+    consumer:
       client: netty4
       retries: 0
       group: smmall

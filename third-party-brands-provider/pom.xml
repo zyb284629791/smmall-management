@@ -40,7 +40,11 @@
             <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
 
-
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.32.Final</version>
+        </dependency>
         <!--dubbo-->
         <dependency>
             <groupId>com.alibaba.spring.boot</groupId>
