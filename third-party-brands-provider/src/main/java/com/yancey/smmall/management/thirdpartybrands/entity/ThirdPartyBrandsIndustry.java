@@ -20,8 +20,8 @@ public class ThirdPartyBrandsIndustry extends BaseEntity {
     private Integer brandiIndustryCode ;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    @Column(name = "brand_id",nullable = false,columnDefinition = "bigint COMMENT '商户id'")
-    private Long brandId ;
+    @JoinColumn(name = "brand_id")
+//    @Column(name = "brand_id",nullable = false,columnDefinition = "bigint COMMENT '商户id'")
+    private ThirdPartyBrands brand ;
 
 }
