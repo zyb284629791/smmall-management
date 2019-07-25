@@ -1,3 +1,5 @@
 spring:
   profiles:
     active: dubbo
+  application:
+    name: smmall-management-gate-way

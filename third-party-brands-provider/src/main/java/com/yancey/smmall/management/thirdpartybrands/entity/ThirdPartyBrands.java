@@ -1,7 +1,8 @@
 package com.yancey.smmall.management.thirdpartybrands.entity;
 
-import com.yancey.smmall.management.common.thirdpartybrands.entity.BaseEntity;
+import com.yancey.smmall.management.common.entity.BaseEntity;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.List;
  */
 @Entity
 @Data
+@ToString
 @org.hibernate.annotations.Table(appliesTo = "third_party_brands",comment = "第三方商户表")
 public class ThirdPartyBrands extends BaseEntity {
 

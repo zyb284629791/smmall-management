@@ -1,5 +1,6 @@
-package com.yancey.smmall.management.common.thirdpartybrands.entity;
+package com.yancey.smmall.management.common.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,6 +14,7 @@ import java.util.Date;
  * @Date : 2019/07/24 - 15:03
  */
 @MappedSuperclass
+@Data
 public class BaseEntity implements Serializable {
 
     @Id

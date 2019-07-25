@@ -1,14 +1,13 @@
-spring:
-  dubbo:
-    application: smmall-management-provider
-    registry:
-      address: zookeeper://vmCentos:2181
-      protocol: dubbo
-      file: ./smmall/servers/log/dubbo-cache/${spring.dubbo.application}/dubbo.cache
-    consumer:
-      client: netty4
-      retries: 0
-      group: smmall
-      version: 1.0.0
-      timeout: 10000
-      check: false
+dubbo:
+  protocol:
+    name: dubbo
+  registry:
+    address: zookeeper://vmCentos:2181
+    file: ./smmall/servers/log/dubbo-cache/${spring.application.name}/dubbo.cache
+  consumer:
+    client: netty4
+    retries: 0
+    group: smmall
+    version: 1.0.0
+    timeout: 10000
+    check: false

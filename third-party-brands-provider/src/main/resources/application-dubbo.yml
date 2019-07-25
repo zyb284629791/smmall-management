@@ -1,25 +1,25 @@
-spring:
-  dubbo:
-    application: smmall-management-gate-way
-    registry:
-      address: zookeeper://vmCentos:2181
-      protocol: dubbo
-      file: ./smmall/servers/log/dubbo-cache/${spring.dubbo.application}/dubbo.cache
-    provider:
-      client: netty4
-      retries: 0
-      server: netty4
-      port: -1
-      group: smmall
-      version: 1.0.0
-      timeout: 10000
-      dispatcher: message
-    annotation:
-      package: com.yancey.smmall.management.thirdpartybrands.facade
-    consumer:
-      client: netty4
-      retries: 0
-      group: smmall
-      version: 1.0.0
-      timeout: 10000
-      check: false
+dubbo:
+  scan:
+    base-packages: com.yancey.smmall.management.thirdpartybrands.facade
+  protocol:
+    name: dubbo
+  registry:
+    address: zookeeper://vmCentos:2181
+    file: ./smmall/servers/log/dubbo-cache/${spring.application.name}/dubbo.cache
+  provider:
+    client: netty4
+    retries: 0
+    server: netty4
+    group: smmall
+    version: 1.0.0
+    timeout: 10000
+    dispatcher: message
+  annotation:
+    package: com.yancey.smmall.management.thirdpartybrands.facade
+  consumer:
+    client: netty4
+    retries: 0
+    group: smmall
+    version: 1.0.0
+    timeout: 10000
+    check: false

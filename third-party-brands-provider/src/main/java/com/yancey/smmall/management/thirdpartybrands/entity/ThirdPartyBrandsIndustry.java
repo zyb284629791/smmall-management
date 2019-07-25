@@ -1,6 +1,6 @@
 package com.yancey.smmall.management.thirdpartybrands.entity;
 
-import com.yancey.smmall.management.common.thirdpartybrands.entity.BaseEntity;
+import com.yancey.smmall.management.common.entity.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.Table;
 
@@ -16,9 +16,11 @@ import javax.persistence.*;
 @Entity
 public class ThirdPartyBrandsIndustry extends BaseEntity {
 
-    @Column(name = "brand_industry",nullable = false,columnDefinition = "tinyint(2) COMMENT '所属行业'")
-    private Integer brandiIndustry ;
+    @Column(name = "brand_industry_code",nullable = false,columnDefinition = "tinyint(2) COMMENT '所属行业'")
+    private Integer brandiIndustryCode ;
 
+    @ManyToOne
+    @JoinColumn(name = "id")
     @Column(name = "brand_id",nullable = false,columnDefinition = "bigint COMMENT '商户id'")
     private Long brandId ;
 

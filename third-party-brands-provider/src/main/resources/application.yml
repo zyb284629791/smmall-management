@@ -1,3 +1,5 @@
 spring:
   profiles:
     active: dubbo, database
+  application:
+      name: smmall-management-provider
