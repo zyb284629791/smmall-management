@@ -28,8 +28,8 @@ public class ThirdPartyBrands extends BaseEntity {
     @Column(name = "brand_name",nullable = false,columnDefinition = "varchar(50) COMMENT '商户名称' ")
     private String brandName;
 
-    @OneToMany(mappedBy = "brand",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<ThirdPartyBrandsIndustry> brandsIndustries;
+//    @OneToMany(mappedBy = "brand",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//    private List<ThirdPartyBrandsIndustry> brandsIndustries;
 
     @Column(nullable = false,columnDefinition = "varchar(50) COMMENT '联系人'")
     private String contact;

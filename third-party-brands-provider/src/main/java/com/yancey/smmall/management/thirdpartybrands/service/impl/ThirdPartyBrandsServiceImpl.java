@@ -6,6 +6,7 @@ import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBra
 import com.yancey.smmall.management.thirdpartybrands.entity.ThirdPartyBrands;
 import com.yancey.smmall.management.thirdpartybrands.entity.ThirdPartyBrandsIndustry;
 import com.yancey.smmall.management.thirdpartybrands.repository.ThirdPartyBrandsRepository;
+import com.yancey.smmall.management.thirdpartybrands.repository.ThirdpartyBrandsIndustryRepository;
 import com.yancey.smmall.management.thirdpartybrands.service.IThirdPartyBrandsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -29,20 +30,24 @@ public class ThirdPartyBrandsServiceImpl implements IThirdPartyBrandsService {
     @Autowired
     private ThirdPartyBrandsRepository thirdPartyBrandsRepository;
 
+    @Autowired
+    private ThirdpartyBrandsIndustryRepository industryRepository;
+
     @Override
     public void save(ThirdPartyBrandsVO thirdPartyBrandsVO) {
         log.info("==============");
         ThirdPartyBrands thirdPartyBrands = new ThirdPartyBrands();
         BeanUtils.copyProperties(thirdPartyBrandsVO,thirdPartyBrands);
         thirdPartyBrands.setCreateUser("xxx");
+        log.info("entity = {}" , thirdPartyBrands);
+        thirdPartyBrandsRepository.save(thirdPartyBrands);
         List<ThirdPartyBrandsIndustry> industries = thirdPartyBrandsVO.getBrandsIndustryCodes().stream().map(code -> {
             ThirdPartyBrandsIndustry industry = new ThirdPartyBrandsIndustry();
             industry.setCreateUser(thirdPartyBrands.getCreateUser());
             industry.setBrandiIndustryCode(code);
+            industry.setBrandId(thirdPartyBrands.getId());
             return industry;
         }).collect(Collectors.toList());
-        thirdPartyBrands.setBrandsIndustries(industries);
-        log.info("entity = {}" , thirdPartyBrands);
-        thirdPartyBrandsRepository.save(thirdPartyBrands);
+        industryRepository.saveAll(industries);
     }
 }
