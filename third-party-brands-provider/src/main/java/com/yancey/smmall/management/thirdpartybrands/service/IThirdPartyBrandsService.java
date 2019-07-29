@@ -1,6 +1,9 @@
 package com.yancey.smmall.management.thirdpartybrands.service;
 
+import com.yancey.smmall.management.common.response.Response;
+import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsQueryParam;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO;
+import org.springframework.data.domain.Page;
 
 /**
  * @Description :
@@ -10,4 +13,13 @@ import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBra
 public interface IThirdPartyBrandsService {
 
     void save(ThirdPartyBrandsVO thirdPartyBrandsVO);
+
+    /**
+     * @Description:
+     * @param queryParam
+     * @Author: Yb.Z
+     * @create: 2019/07/29 16:36
+     * @return: org.springframework.data.domain.Page<com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO>
+     */
+    Response<Page<ThirdPartyBrandsVO>> listByPage(ThirdPartyBrandsQueryParam queryParam);
 }

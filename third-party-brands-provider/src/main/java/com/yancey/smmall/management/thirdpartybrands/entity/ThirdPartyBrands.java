@@ -48,4 +48,7 @@ public class ThirdPartyBrands extends BaseEntity {
 
     @Column(name = "expire_date",nullable = false,columnDefinition = "DATETIME COMMENT '有效期'")
     private Date expireDate;
+
+    @Column(name = "expire_flag",columnDefinition = "tinyint(2) DEFAULT 1 COMMENT '是否过期 0:过期 1:未过期'")
+    private Integer expireFlag;
 }

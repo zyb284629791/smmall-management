@@ -57,4 +57,7 @@ public class ThirdPartyBrandsVO implements Serializable {
     @ApiModelProperty(name = "expireDate", value = "有效期", dataType = "Date", example = "2020-01-01")
     private Date expireDate;
 
+    @ApiModelProperty(name = "expireFlag",value = "帐号状态",dataType = "Integer",example = "1")
+    private Integer expireFlag;
+
 }

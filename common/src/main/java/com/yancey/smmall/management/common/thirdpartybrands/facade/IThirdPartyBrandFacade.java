@@ -1,6 +1,9 @@
 package com.yancey.smmall.management.common.thirdpartybrands.facade;
 
+import com.yancey.smmall.management.common.response.Response;
+import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsQueryParam;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO;
+import org.springframework.data.domain.Page;
 
 /**
  * @Description :
@@ -10,4 +13,13 @@ import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBra
 public interface IThirdPartyBrandFacade {
 
     void save(ThirdPartyBrandsVO thirdPartyBrandsVO);
+
+    /**
+     * @Description: 分页查询商户
+     * @param queryParam
+     * @Author: Yb.Z
+     * @create: 2019/07/29 16:34
+     * @return: org.springframework.data.domain.Page<com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO>
+     */
+    Response<Page<ThirdPartyBrandsVO>> listByPage(ThirdPartyBrandsQueryParam queryParam);
 }

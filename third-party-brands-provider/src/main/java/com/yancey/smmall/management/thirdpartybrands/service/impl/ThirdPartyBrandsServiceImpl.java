@@ -1,7 +1,7 @@
 package com.yancey.smmall.management.thirdpartybrands.service.impl;
 
-import com.google.common.collect.Lists;
-import com.yancey.smmall.management.common.entity.BaseEntity;
+import com.yancey.smmall.management.common.response.Response;
+import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsQueryParam;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO;
 import com.yancey.smmall.management.thirdpartybrands.entity.ThirdPartyBrands;
 import com.yancey.smmall.management.thirdpartybrands.entity.ThirdPartyBrandsIndustry;
@@ -11,6 +11,9 @@ import com.yancey.smmall.management.thirdpartybrands.service.IThirdPartyBrandsSe
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,5 +52,18 @@ public class ThirdPartyBrandsServiceImpl implements IThirdPartyBrandsService {
             return industry;
         }).collect(Collectors.toList());
         industryRepository.saveAll(industries);
+    }
+
+    @Override
+    public Response<Page<ThirdPartyBrandsVO>> listByPage(ThirdPartyBrandsQueryParam queryParam) {
+        Pageable pageable = PageRequest.of(queryParam.getPageNum(), queryParam.getPageSize());
+        Page<ThirdPartyBrandsVO> result = thirdPartyBrandsRepository.findByExpireFlagAndBrandNameOrBrandUsername
+                (queryParam.getBrandState(),queryParam.getBrandName(),queryParam.getBrandName(),pageable);
+        result.forEach(vo -> {
+            vo.setBrandPassword(null);
+            vo.setReBrandPassword(null);
+//            vo.getBrandsIndustryCodes()
+        });
+        return Response.instance().data(result);
     }
 }
