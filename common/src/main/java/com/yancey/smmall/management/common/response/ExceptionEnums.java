@@ -25,9 +25,9 @@ public enum ExceptionEnums {
 		this.errMsg = errMsg;
 	}
 
-	public Integer errCode;
+	private Integer errCode;
 	
-    public String errMsg;
+    private String errMsg;
 
 	public Integer getErrCode() {
 		return errCode;

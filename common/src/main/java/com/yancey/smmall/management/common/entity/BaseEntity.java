@@ -41,5 +41,5 @@ public class BaseEntity implements Serializable {
     private Long version;
 
     @Column(name = "del_flag",nullable = false,columnDefinition = "tinyint(2) DEFAULT 1 COMMENT '删除标识，0：删除，1：未删除'")
-    private boolean delete_flag;
+    private boolean deleteFlag;
 }

@@ -146,9 +146,9 @@ public enum HttpResponseEnum {
 	AUTHENTICATION_ID_ERROR(-3,"身份验证-身份证错误");
 	 
 
-	public Integer code;
+	private Integer code;
 
-	public String message;
+	private String message;
 	
 	/***
 	 * 中控端编码10000

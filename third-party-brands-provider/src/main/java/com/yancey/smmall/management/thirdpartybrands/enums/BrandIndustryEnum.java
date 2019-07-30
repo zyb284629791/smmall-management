@@ -1,7 +1,5 @@
 package com.yancey.smmall.management.thirdpartybrands.enums;
 
-import java.util.HashMap;
-
 /**
  * @Description :
  * @Author : Yb.Z
@@ -32,7 +30,7 @@ public enum  BrandIndustryEnum {
         BrandIndustryEnum result = BrandIndustryEnum.OTHER;
         if (code != null) {
             for (BrandIndustryEnum value : BrandIndustryEnum.values()) {
-                if (value.code == code) {
+                if (value.code.intValue() == code.intValue()) {
                     result = value;
                 }
             }

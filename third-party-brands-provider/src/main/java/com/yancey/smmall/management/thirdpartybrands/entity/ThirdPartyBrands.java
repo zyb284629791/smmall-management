@@ -19,12 +19,6 @@ import java.util.List;
 @org.hibernate.annotations.Table(appliesTo = "third_party_brands",comment = "第三方商户表")
 public class ThirdPartyBrands extends BaseEntity {
 
-//    @Id
-//    @Column(name = "id",columnDefinition="bigint COMMENT '主键，自动生成'")
-//    @TableGenerator(name = "brandsIdGen",table = "brandsIdGen",initialValue = 1000,pkColumnName = "pk_name varchar(100)")
-//    @GeneratedValue(generator = "brandsIdGen")
-//    private Long id;
-
     @Column(name = "brand_name",nullable = false,columnDefinition = "varchar(50) COMMENT '商户名称' ")
     private String brandName;
 
