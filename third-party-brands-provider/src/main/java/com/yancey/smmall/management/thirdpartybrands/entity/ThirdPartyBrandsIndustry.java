@@ -2,6 +2,8 @@ package com.yancey.smmall.management.thirdpartybrands.entity;
 
 import com.yancey.smmall.management.common.entity.BaseEntity;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Table;
 
 import javax.persistence.*;
@@ -13,13 +15,15 @@ import javax.persistence.*;
  */
 @Table(appliesTo = "third_party_brands_industry",comment = "第三方商户所属行业表")
 @Data
+@DynamicInsert
+@DynamicUpdate
 @Entity
 public class ThirdPartyBrandsIndustry extends BaseEntity {
 
 
     @Column(name = "brand_industry_code",nullable = false,columnDefinition =
             "tinyint(2) COMMENT '所属行业 0:酒店,1:餐饮,2:旅游,3:母婴,4:娱乐,5:生活,6:运动,7:电子数码,8:其他'")
-    private Integer brandiIndustryCode ;
+    private Integer brandIndustryCode ;
 
 //    @ManyToOne
 //    @JoinColumn(name = "brand_id")

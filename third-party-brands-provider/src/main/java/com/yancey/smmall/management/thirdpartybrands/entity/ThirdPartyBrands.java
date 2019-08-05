@@ -3,6 +3,8 @@ package com.yancey.smmall.management.thirdpartybrands.entity;
 import com.yancey.smmall.management.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,6 +17,8 @@ import java.util.List;
  */
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
 @ToString
 @org.hibernate.annotations.Table(appliesTo = "third_party_brands",comment = "第三方商户表")
 public class ThirdPartyBrands extends BaseEntity {
@@ -43,6 +47,6 @@ public class ThirdPartyBrands extends BaseEntity {
     @Column(name = "expire_date",nullable = false,columnDefinition = "DATETIME COMMENT '有效期'")
     private Date expireDate;
 
-    @Column(name = "expire_flag",columnDefinition = "tinyint(2) DEFAULT 1 COMMENT '是否过期 0:过期 1:未过期'")
-    private Integer expireFlag;
+    @Column(name = "expire_status",columnDefinition = "tinyint(2) DEFAULT 1 COMMENT '是否过期 0:过期 1:未过期'")
+    private Integer expireStatus;
 }

@@ -3,6 +3,7 @@ dubbo:
     base-packages: com.yancey.smmall.management.thirdpartybrands.facade
   protocol:
     name: dubbo
+    serialization: kryo
   registry:
     address: zookeeper://vm-centos:2181
     file: ./smmall/servers/log/dubbo-cache/${spring.application.name}/dubbo.cache

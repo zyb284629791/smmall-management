@@ -1,6 +1,7 @@
 package com.yancey.smmall.management.thirdpartybrands.web.controller;
 
 import com.yancey.smmall.management.common.response.Response;
+import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsListableVO;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsQueryParam;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO;
 import com.yancey.smmall.management.common.thirdpartybrands.facade.IThirdPartyBrandFacade;
@@ -41,9 +42,10 @@ public class ThirdPartyBrandsController {
      * @create: 2019/07/29 16:34
      * @return: com.yancey.smmall.management.common.response.Response<org.springframework.data.domain.Page<com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO>>
      */
-    @GetMapping("/list")
-    public Response<Page<ThirdPartyBrandsVO>> list(ThirdPartyBrandsQueryParam queryParam){
-//        Page<ThirdPartyBrandsVO> result = thirdPartyBrandFacade.listByPage(queryParam);
-        return thirdPartyBrandFacade.listByPage(queryParam);
+    @GetMapping("/listByPage")
+    public Response<Page<ThirdPartyBrandsListableVO>> listByPage(ThirdPartyBrandsQueryParam queryParam){
+        Page<ThirdPartyBrandsListableVO> result = thirdPartyBrandFacade.listByPage(queryParam);
+        return Response.instance().data(result);
     }
+
 }

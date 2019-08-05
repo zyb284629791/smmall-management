@@ -13,11 +13,14 @@ import java.util.List;
 /**
  * @Description :
  * @Author : Yb.Z
- * @Date : 2019/07/25 - 15:56
+ * @Date : 2019/08/02 - 9:36
  */
 @ApiModel
 @Data
-public class ThirdPartyBrandsVO implements Serializable {
+public class ThirdPartyBrandsListableVO implements Serializable {
+
+    @ApiModelProperty(name = "id", value = "厂商Id", dataType = "Long")
+    private Long id;
 
     @ApiModelProperty(name = "brandName", value = "商户名称", dataType = "String", example = "xxx")
     @NotNull
@@ -43,15 +46,10 @@ public class ThirdPartyBrandsVO implements Serializable {
     @NotNull
     private String brandUsername;
 
-    @ApiModelProperty(name = "brandPassword", value = "账户密码", dataType = "String", example = "123")
-    @NotNull
-    private String brandPassword;
-
-    @ApiModelProperty(name = "reBrandPassword", value = "确认密码", dataType = "String", example = "123")
-    @NotNull
-    private String reBrandPassword;
-
     @ApiModelProperty(name = "expireDate", value = "有效期", dataType = "Date", example = "2020-01-01")
     private Date expireDate;
+
+    @ApiModelProperty(name = "expire_status",value = "帐号状态",dataType = "Integer",example = "1",allowEmptyValue = true)
+    private Integer expireStatus;
 
 }

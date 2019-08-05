@@ -1,6 +1,6 @@
 package com.yancey.smmall.management.thirdpartybrands.service.impl;
 
-import com.yancey.smmall.management.common.response.Response;
+import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsListableVO;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsQueryParam;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO;
 import com.yancey.smmall.management.thirdpartybrands.entity.ThirdPartyBrands;
@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -40,14 +41,14 @@ public class ThirdPartyBrandsServiceImpl implements IThirdPartyBrandsService {
     public void save(ThirdPartyBrandsVO thirdPartyBrandsVO) {
         log.info("==============");
         ThirdPartyBrands thirdPartyBrands = new ThirdPartyBrands();
-        BeanUtils.copyProperties(thirdPartyBrandsVO,thirdPartyBrands);
+        BeanUtils.copyProperties(thirdPartyBrandsVO, thirdPartyBrands);
         thirdPartyBrands.setCreateUser("xxx");
-        log.info("entity = {}" , thirdPartyBrands);
+        log.info("entity = {}", thirdPartyBrands);
         thirdPartyBrandsRepository.save(thirdPartyBrands);
         List<ThirdPartyBrandsIndustry> industries = thirdPartyBrandsVO.getBrandsIndustryCodes().stream().map(code -> {
             ThirdPartyBrandsIndustry industry = new ThirdPartyBrandsIndustry();
             industry.setCreateUser(thirdPartyBrands.getCreateUser());
-            industry.setBrandiIndustryCode(code);
+            industry.setBrandIndustryCode(code);
             industry.setBrandId(thirdPartyBrands.getId());
             return industry;
         }).collect(Collectors.toList());
@@ -55,15 +56,22 @@ public class ThirdPartyBrandsServiceImpl implements IThirdPartyBrandsService {
     }
 
     @Override
-    public Response<Page<ThirdPartyBrandsVO>> listByPage(ThirdPartyBrandsQueryParam queryParam) {
+    public Page<ThirdPartyBrandsListableVO> listByPage(ThirdPartyBrandsQueryParam queryParam) {
         Pageable pageable = PageRequest.of(queryParam.getPageNum(), queryParam.getPageSize());
-        Page<ThirdPartyBrandsVO> result = thirdPartyBrandsRepository.findByExpireFlagAndBrandNameOrBrandUsername
-                (queryParam.getBrandState(),queryParam.getBrandName(),queryParam.getBrandName(),pageable);
-        result.forEach(vo -> {
-            vo.setBrandPassword(null);
-            vo.setReBrandPassword(null);
-//            vo.getBrandsIndustryCodes()
-        });
-        return Response.instance().data(result);
+        Page<ThirdPartyBrands> result = thirdPartyBrandsRepository.findByBrandNameOrBrandUsernameAndExpireStatus
+                (queryParam.getBrandName(), queryParam.getBrandName(), queryParam.getBrandState(), pageable);
+        List<ThirdPartyBrandsListableVO> listableVOS = result.getContent().stream().map(brand ->
+                convertToListableVO(brand)).collect(Collectors.toList());
+        Page<ThirdPartyBrandsListableVO> listableResult = new PageImpl<>(listableVOS, pageable, result.getTotalElements());
+        log.info("page result = {}", listableResult.getContent());
+        return listableResult;
+    }
+
+    private ThirdPartyBrandsListableVO convertToListableVO(ThirdPartyBrands brand) {
+        ThirdPartyBrandsListableVO detailVO = new ThirdPartyBrandsListableVO();
+        BeanUtils.copyProperties(brand, detailVO);
+        List<Integer> industryCodes = industryRepository.findBrandIndustryCodeByBrandId(brand.getId());
+        detailVO.setBrandsIndustryCodes(industryCodes);
+        return detailVO;
     }
 }

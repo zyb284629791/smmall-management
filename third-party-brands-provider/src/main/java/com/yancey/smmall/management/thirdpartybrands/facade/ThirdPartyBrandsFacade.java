@@ -1,6 +1,6 @@
 package com.yancey.smmall.management.thirdpartybrands.facade;
 
-import com.yancey.smmall.management.common.response.Response;
+import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsListableVO;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsQueryParam;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO;
 import com.yancey.smmall.management.common.thirdpartybrands.facade.IThirdPartyBrandFacade;
@@ -31,7 +31,8 @@ public class ThirdPartyBrandsFacade implements IThirdPartyBrandFacade {
     }
 
     @Override
-    public Response<Page<ThirdPartyBrandsVO>> listByPage(ThirdPartyBrandsQueryParam queryParam) {
+    public Page<ThirdPartyBrandsListableVO> listByPage(ThirdPartyBrandsQueryParam queryParam) {
         return thirdPartyBrandsService.listByPage(queryParam);
     }
+
 }
