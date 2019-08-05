@@ -24,6 +24,6 @@ public class ThirdPartyBrandsQueryParam implements Serializable {
     @ApiModelProperty(name = "pageSize" ,value = "分页大小",dataType = "Integer",example = "10")
     private Integer pageSize;
 
-    @ApiModelProperty(name = "pageNum" ,value = "当前页",dataType = "Integer",example = "1")
+    @ApiModelProperty(name = "pageNum" ,value = "当前页",dataType = "Integer",example = "0")
     private Integer pageNum;
 }

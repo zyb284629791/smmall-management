@@ -6,6 +6,7 @@ import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBra
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO;
 import com.yancey.smmall.management.common.thirdpartybrands.facade.IThirdPartyBrandFacade;
 import com.yancey.smmall.management.thirdpartybrands.web.config.NormalConfig;
+import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
@@ -43,6 +44,7 @@ public class ThirdPartyBrandsController {
      * @return: com.yancey.smmall.management.common.response.Response<org.springframework.data.domain.Page<com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO>>
      */
     @GetMapping("/listByPage")
+    @ApiOperation(value = "200",notes = "操作成功")
     public Response<Page<ThirdPartyBrandsListableVO>> listByPage(ThirdPartyBrandsQueryParam queryParam){
         Page<ThirdPartyBrandsListableVO> result = thirdPartyBrandFacade.listByPage(queryParam);
         return Response.instance().data(result);

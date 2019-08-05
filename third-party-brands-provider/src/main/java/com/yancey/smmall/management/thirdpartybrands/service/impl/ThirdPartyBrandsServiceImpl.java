@@ -43,23 +43,25 @@ public class ThirdPartyBrandsServiceImpl implements IThirdPartyBrandsService {
         ThirdPartyBrands thirdPartyBrands = new ThirdPartyBrands();
         BeanUtils.copyProperties(thirdPartyBrandsVO, thirdPartyBrands);
         thirdPartyBrands.setCreateUser("xxx");
-        log.info("entity = {}", thirdPartyBrands);
-        thirdPartyBrandsRepository.save(thirdPartyBrands);
         List<ThirdPartyBrandsIndustry> industries = thirdPartyBrandsVO.getBrandsIndustryCodes().stream().map(code -> {
             ThirdPartyBrandsIndustry industry = new ThirdPartyBrandsIndustry();
             industry.setCreateUser(thirdPartyBrands.getCreateUser());
             industry.setBrandIndustryCode(code);
-            industry.setBrandId(thirdPartyBrands.getId());
+            industry.setBrand(thirdPartyBrands);
+//            industry.setBrandId(thirdPartyBrands.getId());
             return industry;
         }).collect(Collectors.toList());
-        industryRepository.saveAll(industries);
+        thirdPartyBrands.setBrandsIndustries(industries);
+        log.info("entity = {}", thirdPartyBrands);
+//        industryRepository.saveAll(industries);
+        thirdPartyBrandsRepository.save(thirdPartyBrands);
     }
 
     @Override
     public Page<ThirdPartyBrandsListableVO> listByPage(ThirdPartyBrandsQueryParam queryParam) {
         Pageable pageable = PageRequest.of(queryParam.getPageNum(), queryParam.getPageSize());
-        Page<ThirdPartyBrands> result = thirdPartyBrandsRepository.findByBrandNameOrBrandUsernameAndExpireStatus
-                (queryParam.getBrandName(), queryParam.getBrandName(), queryParam.getBrandState(), pageable);
+        Page<ThirdPartyBrands> result = thirdPartyBrandsRepository.listByPage
+                (queryParam, pageable);
         List<ThirdPartyBrandsListableVO> listableVOS = result.getContent().stream().map(brand ->
                 convertToListableVO(brand)).collect(Collectors.toList());
         Page<ThirdPartyBrandsListableVO> listableResult = new PageImpl<>(listableVOS, pageable, result.getTotalElements());
