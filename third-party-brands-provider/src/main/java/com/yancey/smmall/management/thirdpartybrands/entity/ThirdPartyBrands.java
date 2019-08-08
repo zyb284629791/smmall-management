@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Entity
 @Data
+@Deprecated
 @DynamicInsert
 @DynamicUpdate
 @SQLDelete(sql = "update " + TableNameConst.THIRD_PARTY_BRANDS + " t set t.del_flag = " + DeleteFlagConst.DELETED + " where t.id = ?")

@@ -22,4 +22,8 @@ public interface IThirdPartyBrandFacade {
      * @return: org.springframework.data.domain.Page<com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO>
      */
     Page<ThirdPartyBrandsListableVO> listByPage(ThirdPartyBrandsQueryParam queryParam);
+
+    Page<ThirdPartyBrandsListableVO> listByPage2(ThirdPartyBrandsQueryParam queryParam);
+
+    void listTest(ThirdPartyBrandsQueryParam queryParam);
 }

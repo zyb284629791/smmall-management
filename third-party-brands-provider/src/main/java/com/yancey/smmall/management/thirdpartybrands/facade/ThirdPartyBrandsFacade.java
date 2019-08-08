@@ -4,7 +4,7 @@ import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBra
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsQueryParam;
 import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO;
 import com.yancey.smmall.management.common.thirdpartybrands.facade.IThirdPartyBrandFacade;
-import com.yancey.smmall.management.thirdpartybrands.service.IThirdPartyBrandsService;
+import com.yancey.smmall.management.thirdpartybrands.jpaservice.IThirdPartyBrandsService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +35,13 @@ public class ThirdPartyBrandsFacade implements IThirdPartyBrandFacade {
         return thirdPartyBrandsService.listByPage(queryParam);
     }
 
+    @Override
+    public Page<ThirdPartyBrandsListableVO> listByPage2(ThirdPartyBrandsQueryParam queryParam) {
+        return thirdPartyBrandsService.listByPage2(queryParam);
+    }
+
+    @Override
+    public void listTest(ThirdPartyBrandsQueryParam queryParam) {
+        thirdPartyBrandsService.list(queryParam);
+    }
 }

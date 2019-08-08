@@ -3,3 +3,10 @@ spring:
     active: dubbo, database
   application:
       name: smmall-management-provider
+
+logging:
+  level:
+    root: warn
+    com.yancey.smmall.management.thirdpartybrands.mapper: trace
+  pattern:
+    console: '%p%m%n'

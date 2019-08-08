@@ -50,4 +50,16 @@ public class ThirdPartyBrandsController {
         return Response.instance().data(result);
     }
 
+    @GetMapping("/listByPage2")
+    @ApiOperation(value = "200",notes = "操作成功")
+    public Response<Page<ThirdPartyBrandsListableVO>> listByPage2(ThirdPartyBrandsQueryParam queryParam){
+        Page<ThirdPartyBrandsListableVO> result = thirdPartyBrandFacade.listByPage2(queryParam);
+        return Response.instance().data(result);
+    }
+
+    @GetMapping("/listTest")
+    public Response<ThirdPartyBrandsListableVO> listTest(ThirdPartyBrandsQueryParam queryParam){
+        thirdPartyBrandFacade.listTest(queryParam);
+        return Response.instance().build();
+    }
 }

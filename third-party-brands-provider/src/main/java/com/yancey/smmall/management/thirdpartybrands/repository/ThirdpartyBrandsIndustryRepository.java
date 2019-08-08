@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface ThirdpartyBrandsIndustryRepository extends CrudRepository<ThirdPartyBrandsIndustry,Long>, JpaSpecificationExecutor<ThirdPartyBrandsIndustry> {
 
-    @Query("select brandIndustryCode from ThirdPartyBrandsIndustry where brandId = ?1 and deleteFlag = " + DeleteFlagConst.UN_DELETED)
+    @Query("select brandIndustryCode from ThirdPartyBrandsIndustry where brand.id = ?1 and deleteFlag = " + DeleteFlagConst.UN_DELETED)
     List<Integer> findBrandIndustryCodeByBrandId(Long brandId);
 }

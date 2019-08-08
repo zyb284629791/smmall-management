@@ -1,25 +1,16 @@
 package com.yancey.smmall.management.thirdpartybrands.service;
 
-import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsListableVO;
-import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsQueryParam;
-import com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO;
-import org.springframework.data.domain.Page;
+import com.yancey.smmall.management.thirdpartybrands.model.ThirdPartyBrands;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * @Description :
- * @Author : Yb.Z
- * @Date : 2019/07/25 - 16:07
+ * <p>
+ * 第三方商户表 服务类
+ * </p>
+ *
+ * @author Yb.Z
+ * @since 2019-08-08
  */
-public interface IThirdPartyBrandsService {
+public interface IThirdPartyBrandsService extends IService<ThirdPartyBrands> {
 
-    void save(ThirdPartyBrandsVO thirdPartyBrandsVO);
-
-    /**
-     * @Description:
-     * @param queryParam
-     * @Author: Yb.Z
-     * @create: 2019/07/29 16:36
-     * @return: org.springframework.data.domain.Page<com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsVO>
-     */
-    Page<ThirdPartyBrandsListableVO> listByPage(ThirdPartyBrandsQueryParam queryParam);
 }

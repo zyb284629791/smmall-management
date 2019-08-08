@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.criteria.Predicate;
@@ -43,16 +44,10 @@ public interface ThirdPartyBrandsRepository extends CrudRepository<ThirdPartyBra
         return findAll(specification, pageable);
     }
 
-//    default Page<ThirdPartyBrandsListableVO> listByPage2(ThirdPartyBrandsQueryParam queryParam, Pageable pageable) {
-//        Specification<ThirdPartyBrandsListableVO> specification = (Specification<ThirdPartyBrandsListableVO>) (root, query, criteriaBuilder) -> {
-//            List<Predicate> predicates = Lists.newArrayList();
-//            predicates.add(criteriaBuilder.equal(root.get("brandName").as(String.class), queryParam.getBrandName()));
-//            predicates.add(criteriaBuilder.equal(root.get("brandUsername").as(String.class), queryParam.getBrandName()));
-//            Predicate[] predicatesArray = new Predicate[predicates.size()];
-//            predicatesArray = predicates.toArray(predicatesArray);
-//            Predicate predicateOr = criteriaBuilder.or(predicatesArray);
-//            Predicate expireStatus = criteriaBuilder.equal(root.get("expireStatus").as(Integer.class), queryParam.getBrandState());
-//            root.join()
-//        };
-//    }
+    @Query("select new com.yancey.smmall.management.common.thirdpartybrands.entity.ThirdPartyBrandsListableVO(b.id,b.brandName,t.brandIndustryCode," +
+            "b.contact,b.contactPhone,b.contactEmail,b.brandUsername,b.expireDate,b.expireStatus) from ThirdPartyBrands b left join " +
+            "ThirdPartyBrandsIndustry t on b.id = t.brand.id where (b.brandName = ?1 or b.brandUsername = ?2) and b.expireStatus = ?3")
+    List<ThirdPartyBrandsListableVO> listByPage2(String brandName, String brandUserName, Integer brandState);
+
+    List<ThirdPartyBrands> findByBrandNameOrBrandUsernameAndExpireStatus(String brandName, String brandUserName, Integer brandState);
 }

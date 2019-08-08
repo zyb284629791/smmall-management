@@ -28,7 +28,7 @@ public class ThirdPartyBrandsListableVO implements Serializable {
 
     @ApiModelProperty(name = "brandsIndustryCodes", value = "所属行业", dataType = "java.lang.List", example = "0,1,2,3")
     @NotNull
-    private List<Integer> brandsIndustryCodes;
+    private Integer brandsIndustryCodes;
 
     @ApiModelProperty(name = "contact", value = "联系人", dataType = "String", example = "xxx")
     @NotNull
@@ -52,4 +52,19 @@ public class ThirdPartyBrandsListableVO implements Serializable {
     @ApiModelProperty(name = "expire_status",value = "帐号状态",dataType = "Integer",example = "1",allowEmptyValue = true)
     private Integer expireStatus;
 
+
+    public ThirdPartyBrandsListableVO() {
+    }
+
+    public ThirdPartyBrandsListableVO(Long id, @NotNull String brandName, @NotNull Integer brandsIndustryCodes, @NotNull String contact, @NotNull String contactPhone, @Email String contactEmail, @NotNull String brandUsername, Date expireDate, Integer expireStatus) {
+        this.id = id;
+        this.brandName = brandName;
+        this.brandsIndustryCodes = brandsIndustryCodes;
+        this.contact = contact;
+        this.contactPhone = contactPhone;
+        this.contactEmail = contactEmail;
+        this.brandUsername = brandUsername;
+        this.expireDate = expireDate;
+        this.expireStatus = expireStatus;
+    }
 }

@@ -15,6 +15,7 @@ import javax.persistence.*;
  */
 @Table(appliesTo = "third_party_brands_industry", comment = "第三方商户所属行业表")
 @Data
+@Deprecated
 @DynamicInsert
 @DynamicUpdate
 @Entity
