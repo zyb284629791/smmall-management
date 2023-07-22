@@ -35,7 +35,7 @@
         <dubbo.version>2.7.1</dubbo.version>
         <druid.version>1.1.10</druid.version>
         <java.el.version>2.2.4</java.el.version>
-        <guava.version>27.1-jre</guava.version>
+        <guava.version>32.0.0-jre</guava.version>
     </properties>
 
     <dependencyManagement>
